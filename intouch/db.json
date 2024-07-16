@@ -1,0 +1,98 @@
+{
+  "register": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "password": "hashedPassword"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "password": "hashedPassword"
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "password": "Muskan@123"
+    },
+    {
+      "id": "2ba3",
+      "email": "john.doe@example.com",
+      "password": "hashedPassword"
+    }
+  ],
+  "country": [
+    {
+      "key": "sub1",
+      "label": "Country",
+      "children": [
+        {
+          "key": "country_1",
+          "label": "Germany"
+        },
+        {
+          "key": "country_2",
+          "label": "Sweden"
+        }
+      ]
+    }
+  ],
+  "jobfunction": [
+    {
+      "key": "subl",
+      "label": "Job Function",
+      "children": [
+        {
+          "key": "jobtitle_1",
+          "label": "Brand ownership /management",
+          "id": 7
+        },
+        {
+          "key": "jobtitle_2",
+          "label": "Business development",
+          "id": 12
+        }
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "totalRecords": 1,
+      "message": "Leads details fetched successfully",
+      "data": [
+        {
+          "id": 7,
+          "name": "Jack",
+          "jobfunction": "Brand ownership /management",
+          "country": "Sweden",
+          "company": "Organics Inc."
+        } , 
+        {
+          "id": 8,
+          "name": "Jack",
+          "jobfunction": "Brand ownership /management",
+          "country": "Germany",
+          "company": "Organics Inc."
+        } ,  {
+          "id": 1,
+          "name": "john",
+          "jobfunction": "Business development",
+          "country": "Sweden",
+          "company": "Organics Inc."
+        }, {
+          "id": 2,
+          "name": "Jack",
+          "jobfunction": "Business development",
+          "country": "Germany",
+          "company": "Organics Inc."
+        }
+      ]
+    }
+  ]
+}
