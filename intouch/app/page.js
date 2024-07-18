@@ -9,6 +9,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useRouter } from 'next/navigation';
 import Nav from './Nav';
 import Leads from './Leads';
+import TopicsBreakdown from './TopicsBreakdown';
 // import Leads from './Leads';
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
         </TabList>
       </Box>
       <TabPanel value="1"><Leads/></TabPanel>
-      <TabPanel value="2">Item Two</TabPanel>
+      <TabPanel value="2"><TopicsBreakdown/></TabPanel>
     </TabContext>
   </Box>
     </>
