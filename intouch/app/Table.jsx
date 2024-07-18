@@ -69,12 +69,11 @@ function Table() {
         );
       });
     }
-    
-    // if (searchQuery) {
-    //   filtered = filtered.filter((item) =>
-    //     item.name.toLowerCase().includes(searchQuery.toLowerCase())
-    //   );
-    // }
+    if (Object.keys(searchQuery).length > 0) {
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
     setFilteredData(filtered);
   }, [appliedFilters, searchQuery, tableData]);
 

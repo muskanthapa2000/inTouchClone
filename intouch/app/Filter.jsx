@@ -56,15 +56,15 @@ function Filter() {
     const [expanded, setExpanded] = useState('panel1');
     const [selectedFilters, setSelectedFilters] = useState({});
     const [selectedItems, setSelectedItems] = useState({});
+    const dispatch = useDispatch();
+      const filterData = useSelector((state)=> state.filter.filterData);
+      const searchQuery = useSelector((state)=> state.filter.searchQuery);
+      console.log(searchQuery);
 
     const handleChange =
       (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
       };
-    const dispatch = useDispatch();
-      const filterData = useSelector((state)=> state.filter.filterData);
-      const searchQuery = useSelector((state)=> state.filter.searchQuery);
-      console.log(searchQuery);
 
       const handleFilterFetch = async ()=>{
         try {
@@ -81,23 +81,47 @@ function Filter() {
       }
 
       const handleFilterSelect = (category, value) => {
-        setSelectedItems((prev) => ({
-          ...prev,
-          [category]: prev[category]?.includes(value)
-            ? prev[category].filter((item) => item !== value)
-            : [...(prev[category] || []), value],
-        }));
-        setSelectedFilters((prev) => ({
-          ...prev,
-          [category]: prev[category] === value ? null : value, // Allow deselecting
-        }));
+        setSelectedItems((prev) => {
+          const currentCategoryItems = prev[category] || [];
+          const isSelected = currentCategoryItems.includes(value);
+      
+          if (isSelected) {
+            // Deselect the filter
+            return {
+              ...prev,
+              [category]: currentCategoryItems.filter((item) => item !== value),
+            };
+          } else {
+            // Select the filter
+            return {
+              ...prev,
+              [category]: [...currentCategoryItems, value],
+            };
+          }
+        });
+      
+        setSelectedFilters((prev) => {
+          const isSelected = prev[category] === value;
+      
+          if (isSelected) {
+            // Deselect the filter
+            const { [category]: _, ...newFilters } = prev;
+            return newFilters;
+          } else {
+            // Select the filter
+            return {
+              ...prev,
+              [category]: value,
+            };
+          }
+        });
       };
       
       const handleApplyFilter = () => {
         dispatch(applyFilterData(selectedFilters));
       };
       
-      const handleSearch = () => {
+      const handleSearch = (searchQuery) => {
         dispatch(setSearchQuery(searchQuery));
       };
     
@@ -116,7 +140,7 @@ function Filter() {
           variant="standard"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-          <Button variant="contained" onClick={handleSearch}>Search</Button>
+          <Button variant="contained" onClick={() => handleSearch(searchQuery)}>Search</Button>
       </div>
 
 
